@@ -20,3 +20,51 @@
 }```
 
 
+# This GraphQL query retrieves specific data for a game, review, and author by their IDs.
+# - The 'game' field fetches the title of the game with the given 'gameId'.
+# - The 'review' field fetches the content and rating of the review with the given 'reviewId'.
+# - The 'author' field fetches the name of the author with the given 'authorId'.
+query findOne($gameId: ID!, $reviewId: ID!, $authorId: ID!) {
+  game(id: $gameId) {
+    title
+  }
+  review(id: $reviewId) {
+    content,
+    rating
+  }
+  author(id: $authorId) {
+    name
+  }
+}
+
+query nested ($gameid: ID!){
+  game(id: $gameid) {
+    id
+    platform
+    review {
+      id
+      rating
+    }
+  }
+}
+
+query nested2($revId : ID!){
+  review(id: $revId){
+    rating
+    content
+    game {
+      platform
+      review {
+        id
+        content
+      }
+    }
+    author {
+      id
+      name
+      review {
+        content
+      }
+    }
+  }
+}
