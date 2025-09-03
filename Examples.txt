@@ -1,0 +1,22 @@
+# This GraphQL query retrieves data about games, authors, and reviews.
+# - The 'games' field returns a list of games with their 'id' and 'platform'.
+# - The 'authors' field returns a list of authors with their 'id', 'name', and 'verified' status.
+# - The 'reviews' field returns a list of reviews with their 'content' and 'rating'.
+```query Games {
+  games {
+    id
+    platform
+  }
+
+  authors {
+    id
+    name
+    verified
+  }
+  reviews {
+    content
+    rating
+  }
+}```
+
+
