@@ -76,3 +76,19 @@ mutation DeleteGame($deleteGameId: ID!){
     platform
   }
 }
+
+mutation editGame($updateGameId: ID!, $game: EditGameInput!){
+  updateGame(id: $updateGameId, game: $game) {
+    id,
+    platform
+    title
+  }
+}
+
+mutation AddGameM($game : AddGameInput){
+  addGame(game : $game) {
+    id
+    platform
+    title
+  }
+}
