@@ -68,3 +68,11 @@ query nested2($revId : ID!){
     }
   }
 }
+
+mutation DeleteGame($deleteGameId: ID!){
+  deleteGame(id: $deleteGameId) {
+    id
+    title
+    platform
+  }
+}

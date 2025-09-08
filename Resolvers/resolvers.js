@@ -7,7 +7,7 @@ export const resolvers = {
 		},
 
 		game(parent, args, context) {
-			console.log(parent, args);
+			console.log(parent, args, db.games);
 			return db.games.find((item) => item.id === args.id);
 		},
 
@@ -51,6 +51,33 @@ export const resolvers = {
 		game(parent) {
 			console.log(parent);
 			return db.games.find((item) => item.id == parent.game_id);
+		},
+	},
+
+	Mutation: {
+		deleteGame(_, args) {
+			db.games = db.games.filter((g) => g.id === args.id);
+			return db.games;
+		},
+
+		addGame(_, args) {
+			let game = {
+				...args.game,
+				id: db.games.length + 1 + "",
+			};
+			db.games.push(game);
+			return game;
+		},
+
+		updateGame(_, args) {
+			db.games = db.games.map((element) => {
+				if (element.id === args.id) {
+					return { ...element, ...args.game };
+				}
+				return element;
+			});
+
+			return db.games.find((ele) => ele.id == args.id);
 		},
 	},
 };
